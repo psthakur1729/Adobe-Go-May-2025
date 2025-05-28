@@ -44,7 +44,7 @@ func main() {
 
 func sortNos(list *[5]int) {
 	fmt.Println((*list)[0], list[0])
-
+	fmt.Printf("list : %p\n", list)
 	fmt.Println("[sortNos] list = ", list)
 	for i := 0; i < 4; i++ {
 		for j := i + 1; j < 5; j++ {

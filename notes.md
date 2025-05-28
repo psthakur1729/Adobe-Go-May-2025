@@ -87,6 +87,7 @@ go version
 ### Array
 - Fixed sized typed collection
 ### Slice
+- Varying sized typed collection
 ### Map
 
 
