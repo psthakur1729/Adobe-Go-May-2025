@@ -73,6 +73,15 @@ func wrapProfiler(oper func(int, int)) func(int, int) {
 	}
 }
 
+/*
+func compose(fn func(int, int), compsers ...func(func(int, int)) func(int, int)) func(int, int) {
+	for i := len(compsers) - 1; i >= 0; i-- {
+		fn = compsers[i](fn)
+	}
+	return fn
+}
+*/
+
 type Operation func(int, int)
 type WrapOperation func(Operation) Operation
 
