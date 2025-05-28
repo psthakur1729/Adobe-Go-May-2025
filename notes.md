@@ -80,7 +80,8 @@ go version
     - Return functions as return values
     - Can be treated as "types"
 5. Deferred functions
-
+6. Closures
+![image](./images/closures.png)
 
 
 
