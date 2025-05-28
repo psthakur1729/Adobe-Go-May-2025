@@ -88,6 +88,7 @@ go version
 - Fixed sized typed collection
 ### Slice
 - Varying sized typed collection
+![image](./images/slices.png)
 ### Map
 
 
