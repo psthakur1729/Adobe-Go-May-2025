@@ -83,7 +83,11 @@ go version
 6. Closures
 ![image](./images/closures.png)
 
-
+## Collection
+### Array
+- Fixed sized typed collection
+### Slice
+### Map
 
 
 
