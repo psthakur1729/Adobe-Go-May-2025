@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 func main() {
+	var x int
 	sayHi()
 	sayHello("Magesh")
 	greet("Magesh", "Kuppan")
@@ -42,8 +43,17 @@ func add(x, y int) int {
 	return x + y
 }
 
+/*
 func divide(x, y int) (int, int) {
 	quotient := x / y
 	remainder := x % y
 	return quotient, remainder
+}
+*/
+
+// named results
+func divide(x, y int) (quotient, remainder int) {
+	quotient = x / y
+	remainder = x % y
+	return
 }
