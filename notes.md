@@ -90,6 +90,7 @@ go version
 - Varying sized typed collection
 ![image](./images/slices.png)
 ### Map
+- Typed collection of key/value pairs
 
 
 
