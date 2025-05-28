@@ -18,7 +18,6 @@ func main() {
 
 	if q, r, err := divide(100, divisor); err != nil {
 		fmt.Println("error :", err)
-		return
 	} else {
 		fmt.Printf("Dividing 100 by %d, quotient = %d and remainder = %d\n", divisor, q, r)
 	}
