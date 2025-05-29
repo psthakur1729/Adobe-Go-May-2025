@@ -34,12 +34,54 @@ type AreaFinder interface {
 func PrintArea(x AreaFinder) {
 	fmt.Println("Area :", x.Area())
 }
+
+// v4.0
+/*
+Add Perimeter() to both Circle (2 * Pi * r) & Rectangle (2 * (L + B))
+Write a PrintPermeter() function
+*/
+
+func (c Circle) Perimeter() float64 {
+	return 2 * math.Pi * c.Radius
+}
+
+func (r Rectangle) Perimeter() float64 {
+	return 2 * (r.Length + r.Breadth)
+}
+
+type PerimeterFinder interface {
+	Perimeter() float64
+}
+
+func PrintPermeter(x PerimeterFinder) {
+	fmt.Println("Perimter :", x.Perimeter())
+}
+
+// interface composition
+type ShapeStatsFinder interface {
+	AreaFinder
+	PerimeterFinder
+}
+
+func PrintShapeStats(x ShapeStatsFinder) {
+	PrintArea(x)     // x should implement AreaFinder
+	PrintPermeter(x) // x should implement PerimeterFinder
+}
+
 func main() {
 	c := Circle{Radius: 16}
 	// fmt.Println("Area :", c.Area())
-	PrintArea(c)
+	/*
+		PrintArea(c)
+		PrintPermeter(c)
+	*/
+	PrintShapeStats(c)
 
 	r := Rectangle{Length: 14, Breadth: 16}
 	// fmt.Println("Area :", r.Area())
-	PrintArea(r)
+	/*
+		PrintArea(r)
+		PrintPermeter(r)
+	*/
+	PrintShapeStats(r)
 }
