@@ -22,6 +22,10 @@ func main() {
 		Name: "Pen",
 		Cost: 10,
 	}
+
+	// Below is not advisable
+	// var p Product = Product{100, "Pen", 5}
+
 	// fmt.Println(p)
 	// fmt.Printf("%#v\n", p)
 	fmt.Printf("%+v\n", p)
