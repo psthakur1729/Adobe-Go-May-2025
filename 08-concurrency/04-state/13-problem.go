@@ -22,10 +22,7 @@ func main() {
 	wg := &sync.WaitGroup{}
 	for no := 2; no <= 100; no++ {
 		wg.Add(1)
-		go func() {
-			defer wg.Done()
-			checkPrime(no)
-		}()
+		go checkPrime(wg, no)
 	}
 	wg.Wait()
 	fmt.Println("Done")
@@ -35,7 +32,8 @@ func main() {
 	fmt.Println("Prime Count :", primeCount)
 }
 
-func checkPrime(no int) {
+func checkPrime(wg *sync.WaitGroup, no int) {
+	defer wg.Done()
 	for i := 2; i <= (no / 2); i++ {
 		if no%i == 0 {
 			return
