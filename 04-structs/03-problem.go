@@ -22,54 +22,50 @@ type Product struct {
 	Cost float64
 }
 
-func main() {
-	/*
-		var p Product
-		p.Id = 100
-		p.Name = "Pen"
-		p.Cost = 5
-	*/
-
-	var p Product = Product{
-		Id:   100,
-		Name: "Pen",
-		Cost: 10,
-	}
-	// fmt.Println(p)
-	// fmt.Printf("%#v\n", p)
-	fmt.Printf("%+v\n", p)
-
-	// struct instances are values
-	var p1 = Product{
-		Id:   100,
-		Name: "Pen",
-		Cost: 10,
-	}
-
-	var p2 = Product{
-		Id:   100,
-		Name: "Pen",
-		Cost: 10,
-	}
-	fmt.Println("p1 == p2 :", p1 == p2)
-
-	fmt.Println("Before applying discount")
-	fmt.Println(Format(p))
-	ApplyDiscount(&p, 10)
-	fmt.Println("After applying discount")
-	fmt.Println(Format(p))
-
+type LineItem struct {
+	Item  Product
+	Units int
 }
 
-/* Write the following functions
-1. Format(product) => "Id = 100, Name = Pen, Cost = 10"
-2. ApplyDiscount(product, discountPercentage) => no return result. updates the cost after applying the discount
-*/
+type ShoppingCart struct {
+	LineItems []LineItem
+}
 
-func Format(p Product) string {
+func main() {
+	p1 := Product{Id: 100, Name: "Pen", Cost: 10}
+	p2 := Product{Id: 101, Name: "Pencil", Cost: 5}
+	p3 := Product{Id: 102, Name: "Marker", Cost: 50}
+	l1 := LineItem{Item: p1, Units: 20}
+	l2 := LineItem{Item: p2, Units: 50}
+	l3 := LineItem{Item: p3, Units: 5}
+	cart := ShoppingCart{}
+	cart.LineItems = append(cart.LineItems, l1)
+	cart.LineItems = append(cart.LineItems, l2)
+	cart.LineItems = append(cart.LineItems, l3)
+
+	PrintCart(cart)
+	total := CalculateTotal(cart)
+	fmt.Printf("Total : %0.2f\n", total)
+}
+
+func FormatProduct(p Product) string {
 	return fmt.Sprintf("Id = %d, Name = %q, Cost = %0.2f", p.Id, p.Name, p.Cost)
 }
 
-func ApplyDiscount(p *Product, discountPercentage float64) {
-	p.Cost = p.Cost * ((100 - discountPercentage) / 100)
+func FormatLineItem(li LineItem) string {
+	return fmt.Sprintf("%s, Units = %d", FormatProduct(li.Item), li.Units)
+}
+
+func PrintCart(cart ShoppingCart) {
+	for _, li := range cart.LineItems {
+		fmt.Println(FormatLineItem(li))
+	}
+}
+
+func CalculateTotal(cart ShoppingCart) float64 {
+	var total float64
+	for _, li := range cart.LineItems {
+		total += float64(li.Units) * li.Item.Cost
+	}
+	return total
 }
