@@ -34,11 +34,18 @@ type LineItem struct {
 	Units int
 }
 
-func NewLineItem(p *Product, units int) *LineItem {
-	return &LineItem{
-		Item:  p,
-		Units: units,
-	}
+func NewLineItem() *LineItem {
+	return &LineItem{}
+}
+
+func (li *LineItem) For(p *Product) *LineItem {
+	li.Item = p
+	return li
+}
+
+func (li *LineItem) Count(units int) *LineItem {
+	li.Units = units
+	return li
 }
 
 func (li LineItem) Format() string {
@@ -57,8 +64,9 @@ func NewShoppingCart() *ShoppingCart {
 	return &ShoppingCart{}
 }
 
-func (sc *ShoppingCart) AddLineItem(li *LineItem) {
+func (sc *ShoppingCart) WithLineItem(li *LineItem) *ShoppingCart {
 	sc.LineItems = append(sc.LineItems, li)
+	return sc
 }
 
 func (sc ShoppingCart) Total() float64 {
@@ -84,10 +92,10 @@ func main() {
 	p2 := NewProduct(101, "Pencil", 5)
 	p3 := NewProduct(102, "Marker", 50)
 
-	cart := NewShoppingCart()
-	cart.AddLineItem(NewLineItem(p1, 10))
-	cart.AddLineItem(NewLineItem(p2, 50))
-	cart.AddLineItem(NewLineItem(p3, 5))
+	cart := NewShoppingCart().
+		WithLineItem(NewLineItem().For(p1).Count(5)).
+		WithLineItem(NewLineItem().For(p2).Count(50)).
+		WithLineItem(NewLineItem().For(p3).Count(5))
 
 	fmt.Println(cart.Format())
 }
