@@ -93,5 +93,14 @@ go version
 - Typed collection of key/value pairs
 
 
+## Concurrency Programming
+
+### What is Concurrency?
+- Concurrency is NOT parallelism
+
+### WaitGroup
+- Semaphore based counter
+- Has the ability to block the execution of a function until the counter becomes 0
+
 
 

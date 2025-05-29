@@ -2,12 +2,19 @@ package main
 
 import (
 	"fmt"
+	"sync"
 )
 
 func main() {
+	wg := &sync.WaitGroup{}
 	for no := 2; no <= 100; no++ {
-		printIfPrime(no)
+		wg.Add(1)
+		go func() {
+			printIfPrime(no)
+			wg.Done()
+		}()
 	}
+	wg.Wait()
 	fmt.Println("Done")
 }
 
