@@ -144,3 +144,21 @@ data := <- ch
 ![image](./images/channel-behaviors.png)
 
 
+## Context (context package)
+- `context.Context` interface
+    - ctx.Done()
+        - returns a `<-chan struct{}`
+- `context.Background()`
+    - used to create a context with no parent (typically root contexts)
+- `context.WithCancel(parentCtx)`
+    - allows programmatic cancellation
+- `context.WithTimeout(parentCtx, time.Duration)`
+    - relative based cancellation
+    - also supports programmatic cancellation
+- `context.WithDeadline(parentCtx, time.Time)`
+    - absolute time based cancellation
+    - also supports programmatic cancellation
+- `context.WithValue(parentCtx, key, value)`
+    - used to share data across context hierarchies
+    - non-cancellable
+
