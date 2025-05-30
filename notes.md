@@ -111,5 +111,34 @@ go version
 - Semaphore based counter
 - Has the ability to block the execution of a function until the counter becomes 0
 
+### Data Race
+- To detect data races
+```shell
+go run -race [filename.go]
+```
+```shell
+go build -race [filename.go]
+```
+
+### Channel
+- data type designed to enable communication between goroutines
+#### Declaration
+```go
+var ch chan int
+```
+#### Initialization
+```go
+ch = make(chan int)
+```
+#### Channel Operations
+- Using channel operator ( `<-` )
+##### Send Operation
+```go
+ch <- 10
+```
+##### Receive Operation
+```go
+data := <- ch
+```
 
 
