@@ -162,3 +162,13 @@ data := <- ch
     - used to share data across context hierarchies
     - non-cancellable
 
+## Testing
+```shell
+go test ./... -v
+```
+
+## Code Coverage
+```shell
+go test ./... -coverprofile=cover.out
+go tool cover -html=cover.out
+```
