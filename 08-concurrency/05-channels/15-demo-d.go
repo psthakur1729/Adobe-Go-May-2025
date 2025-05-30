@@ -16,7 +16,7 @@ func main() {
 }
 
 // producer
-func add(x, y int) chan<- int {
+func add(x, y int) <-chan int {
 	ch := make(chan int)
 	go func() {
 		time.Sleep(5 * time.Second)
