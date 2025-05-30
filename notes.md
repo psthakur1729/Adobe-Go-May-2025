@@ -172,3 +172,15 @@ go test ./... -v
 go test ./... -coverprofile=cover.out
 go tool cover -html=cover.out
 ```
+
+### Mockery
+- generating Mock types
+Installation
+```shell
+go install github.com/vektra/mockery/v3@v3.2.4
+```
+
+- Generate mocks
+```shell
+mockery
+```

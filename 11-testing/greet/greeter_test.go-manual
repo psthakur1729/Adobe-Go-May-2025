@@ -1,0 +1,48 @@
+package greet
+
+import (
+	"testing"
+	"time"
+)
+
+// Mock Type
+type DayTimeProvider struct {
+}
+
+func (dtp DayTimeProvider) GetCurrent() time.Time {
+	return time.Date(2009, time.November, 10, 15, 0, 0, 0, time.UTC)
+}
+func Test_Greeter_Good_Day(t *testing.T) {
+
+	day_time_provider := DayTimeProvider{}
+	greeter := NewGreeter(day_time_provider)
+	userName := "Magesh"
+	expected := "Hi Magesh, Good Day!"
+
+	actual := greeter.Greet(userName)
+
+	if actual != expected {
+		t.Errorf("Expected : %q, Actual : %q", expected, actual)
+	}
+}
+
+// Mock Type
+type MorningTimeProvider struct {
+}
+
+func (mtp MorningTimeProvider) GetCurrent() time.Time {
+	return time.Date(2009, time.November, 10, 9, 0, 0, 0, time.UTC)
+}
+func Test_Greeter_Good_Morning(t *testing.T) {
+
+	morning_time_provider := MorningTimeProvider{}
+	greeter := NewGreeter(morning_time_provider)
+	userName := "Magesh"
+	expected := "Hi Magesh, Good Morning!"
+
+	actual := greeter.Greet(userName)
+
+	if actual != expected {
+		t.Errorf("Expected : %q, Actual : %q", expected, actual)
+	}
+}
