@@ -98,6 +98,15 @@ go version
 ### What is Concurrency?
 - Concurrency is NOT parallelism
 
+### Cooperative Multitasking
+![image](./images/cooperative-multitasking.png)
+
+### Preemptive Multitasking
+![image](./images/preemptive-multitasking.png)
+
+### Go Concurrency
+![image](./images/go-concurrency.png)
+
 ### WaitGroup
 - Semaphore based counter
 - Has the ability to block the execution of a function until the counter becomes 0
