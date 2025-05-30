@@ -49,3 +49,26 @@ func TestIsPrime(t *testing.T) {
 	}
 
 }
+
+// Micro benchmarking
+func Benchmark_IsPrime(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		IsPrime(97)
+	}
+}
+
+func GeneratePrimes() []int {
+	var primes []int = make([]int, 0, 25)
+	for no := 2; no <= 100; no++ {
+		if IsPrime(no) {
+			primes = append(primes, no)
+		}
+	}
+	return primes
+}
+
+func Benchmark_GeneratePrimes(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		GeneratePrimes()
+	}
+}

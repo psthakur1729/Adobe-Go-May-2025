@@ -184,3 +184,5 @@ go install github.com/vektra/mockery/v3@v3.2.4
 ```shell
 mockery
 ```
+
+### Benchmarking
