@@ -9,37 +9,30 @@ import (
 	"sync"
 )
 
-// Communicate by sharing memory
-
-var primeCount int64
-var primes []int
-var mutex sync.Mutex
-
 func main() {
 	wg := &sync.WaitGroup{}
+	primesCh := make(chan int)
 	for no := 2; no <= 100; no++ {
 		wg.Add(1)
-		go checkPrime(wg, no)
+		go checkPrime(wg, no, primesCh)
 	}
+	go func() {
+		for primeNo := range primesCh {
+			fmt.Println("Prime No :", primeNo)
+		}
+	}()
 	wg.Wait()
+	close(primesCh)
 	fmt.Println("Done")
-	for _, primeNo := range primes {
-		fmt.Println("Prime No :", primeNo)
-	}
-	fmt.Println("Prime Count :", primeCount)
 }
 
-func checkPrime(wg *sync.WaitGroup, no int) {
+func checkPrime(wg *sync.WaitGroup, no int, ch chan int) {
 	defer wg.Done()
 	for i := 2; i <= (no / 2); i++ {
 		if no%i == 0 {
 			return
 		}
 	}
-	mutex.Lock()
-	{
-		primeCount += 1
-		primes = append(primes, no)
-	}
-	mutex.Unlock()
+	ch <- no
+
 }
