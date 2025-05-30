@@ -25,7 +25,6 @@ func main() {
 }
 
 func genNos(ctx context.Context) <-chan int {
-	ctx.Done()
 	ch := make(chan int)
 	go func() {
 	NO_LOOP:
