@@ -11,6 +11,11 @@ import (
 func main() {
 
 	ch := add(100, 200)
+	/*
+		go func() {
+			ch <- 10000
+		}()
+	*/
 	result := <-ch
 	fmt.Println(result)
 }
